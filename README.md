@@ -12,7 +12,7 @@
 # How to Run
 
 
-Faça o clone do repositório https://gitlab.com/FilipeDiasLima/todolist.git
+Faça o clone do repositório https://gitlab.com/FilipeDiasLima/todolist.git<br/>
 Abra o seu terminal e navegue ate a pasta onde está salvo o repositório
 
 
