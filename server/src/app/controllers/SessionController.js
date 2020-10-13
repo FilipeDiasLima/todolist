@@ -23,6 +23,7 @@ class SessionController{
 
     return response.json({
        user: {
+         id,
          name,
          email,
        },

@@ -1,5 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import Route from './Route';
+
+import history from '../services/history';
 
 import Login from '../pages/Login';
 import Register from '../pages/Register';
@@ -8,16 +11,19 @@ import Home from '../pages/Home';
 import Checked from '../pages/Checked';
 import EditTask from '../pages/EditTask';
 
+
 function Routes(){
   return(
-    <Switch>
-      <Route path="/" exact component={Login}/>
-      <Route path="/register" exact component={Register}/>
-      <Route path="/add-task" exact component={AddTask}/>
-      <Route path="/home" exact component={Home}/>
-      <Route path="/checked-tasks" exact component={Checked}/>
-      <Route path="/edit-task" exact component={EditTask}/>
-    </Switch>
+    <BrowserRouter history={history}>
+      <Switch>
+        <Route path="/" exact component={Login}/>
+        <Route path="/register" component={Register}/>
+        <Route path="/add-task" component={AddTask} isPrivate/>
+        <Route path="/home" component={Home} isPrivate/>
+        <Route path="/checked-tasks" component={Checked} isPrivate/>
+        <Route path="/edit-task" component={EditTask} isPrivate/>
+      </Switch>
+    </BrowserRouter>
   )
 }
 

@@ -3,6 +3,8 @@ import {Link, useLocation} from 'react-router-dom';
 import {IoIosAddCircle, IoIosSquare, IoIosCheckbox} from 'react-icons/io';
 import {FiPower} from 'react-icons/fi'
 
+import taskIcon from '../../assets/icons/task-list.svg';
+
 import { Container, Logo, Icons } from './styles';
   
 function Home(){
@@ -24,7 +26,9 @@ function Home(){
 
   return(
     <Container>
-      <Logo>TDL</Logo>
+      <Logo>
+        <img src={taskIcon} alt="Tasks-icon"/>
+      </Logo>
       <Icons>
       <div className="link">
           <Link

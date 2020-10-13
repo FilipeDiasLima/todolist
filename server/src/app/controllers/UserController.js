@@ -24,6 +24,13 @@ class UserController {
     return response.status(201).send({name, email});
   }
 
+  async index(request, response) {
+    const users = await connection('users')
+    .select('*');
+
+    return response.json(users);
+  }
+
   async delete(request, response) {
     const {id} = request.params;
     
