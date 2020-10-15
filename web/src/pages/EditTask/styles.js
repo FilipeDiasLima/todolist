@@ -77,7 +77,7 @@ export const NewCard = styled.div`
   max-height: 300px;
   height: 100%;
   width: 100%;
-  background: #5D5F74;
+  background: #8692FF;
   border-radius: 10px;
 `;
 

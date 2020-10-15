@@ -48,6 +48,19 @@ export const Content = styled.div`
       & + input {
         margin-top: 16px;
       }
+
+      &:focus {
+        border: 2px solid #7671DE;
+      }
+
+    }
+
+    > span {
+      color: #F63C75;
+      align-self: flex-start;
+      margin: 0 3px 10px;
+      font-weight: bold;
+      font-size: 1.4rem;
     }
 
     > button {

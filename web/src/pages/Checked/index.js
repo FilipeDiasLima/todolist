@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {IoIosCheckbox, IoIosCloseCircle} from 'react-icons/io';
 import {Link} from 'react-router-dom';
-
+import {useHistory} from 'react-router-dom'
 import api from '../../services/api';
 
 import SideBar from '../../components/SideBar';
 import { Container, Titles, Cards, CardContainer, CardContent, CardIcons  } from './styles';
 
-function Home(){
+function CheckedTasks(){
   const [cards, setCards] = useState([]);
+  const history = useHistory();
 
   async function loadTasksCards() {
     const response = await api.get('/tasks-check');
@@ -17,12 +18,13 @@ function Home(){
 
   useEffect(() => {
     loadTasksCards();
-  }, []);
+  }, [setCards]);
 
   async function toggleCheckTask(id){
     await api.put(`/tasks-check/${id}`,{
       "finished": false,
     });
+    history.push('/checked-tasks');
   }
 
   async function handleDeleteTask(id){
@@ -66,4 +68,4 @@ function Home(){
   );
 }
 
-export default Home;
+export default CheckedTasks;

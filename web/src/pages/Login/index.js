@@ -2,9 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
 
 import {signInRequest} from '../../store/modules/auth/actions'
 import {Container, Content, Background} from './styles';
+
+const schema = Yup.object().shape({
+  email: Yup.string().email('Insira um e-mail válido').required('O e-mail é obrigatório'),
+  password: Yup.string().required('A senha é obrigatória'),
+})
 
 function Login() {
   const dispatch = useDispatch();
@@ -17,7 +23,7 @@ function Login() {
     <Container>
       <Content>
         <h1>ToDoList</h1>
-        <Form onSubmit={handleSubmite}>
+        <Form schema={schema} onSubmit={handleSubmite}>
           <h2>Faça seu logon</h2>
           <Input 
             name="email"

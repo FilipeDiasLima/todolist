@@ -77,7 +77,7 @@ export const NewCard = styled.div`
   max-height: 300px;
   height: 100%;
   width: 100%;
-  background: #5D5F74;
+  background: #8692FF;
   border-radius: 10px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 `;
@@ -96,7 +96,7 @@ export const Text = styled.div`
     font-weight: bold;
 
     &::placeholder {
-      color: #C4C4C4;
+      color: #e1e1e1;
     }
 
   }
@@ -112,7 +112,7 @@ export const Text = styled.div`
     resize: none;
 
     &::placeholder {
-      color: #C4C4C4;
+      color: #e1e1e1;
     }
   }
 

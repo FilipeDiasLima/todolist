@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Input } from '@rocketseat/unform';
+import {useParams, useHistory} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 
-
+import {updateTaskRequest} from '../../store/modules/todo/actions'
+import api from '../../services/api';
 import SideBar from '../../components/SideBar';
 import {Container, Titles, Content, NewCard, Text, Time} from './styles';
 
 
 function EditTask(){
-  function handleSubmit(){
-      
+  const {id} = useParams();
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const [task, setTask] = useState({});
+  
+  useEffect(() => {
+    api.get(`/tasks/${id}`).then(response => {
+      setTask(response.data);
+    });
+  }, [id]);
+
+  function handleSubmit(data){
+    dispatch(updateTaskRequest(id, data))
+  }
+
+  function cancelEdit(){
+    history.push('/home')
   }
 
   return (
@@ -19,7 +38,7 @@ function EditTask(){
         <h1>ToDoList</h1>
         <h2>Editar tarefa</h2>
       </Titles>
-      <Form onSubmit={handleSubmit}>
+      <Form initialData={task} onSubmit={handleSubmit}>
         <Content>
           <NewCard>
             <Text>
@@ -50,7 +69,7 @@ function EditTask(){
             </Time>
           </NewCard>
           <button className="add" type="submit">Adicionar</button>
-          <button className="cancel" type="button">Cancelar</button>
+          <button className="cancel" onClick={cancelEdit} type="button">Cancelar</button>
         </Content>
       </Form>
     </Container>

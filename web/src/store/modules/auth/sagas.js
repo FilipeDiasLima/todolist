@@ -1,24 +1,33 @@
 import {all, takeLatest, call, put} from 'redux-saga/effects';
-import {signFailure, signInSuccess} from './actions'
+import {toast} from 'react-toastify';
+
 import api from '../../../services/api';
 import history from '../../../services/history';
 
+import {signFailure, signInSuccess} from './actions'
+
 export function* signIn({payload}) {
-  const {email, password} = payload;
+  try {
+    const {email, password} = payload;
 
-  const response = yield call(api.post, 'sessions', {
-    email,
-    password,
-  });
+    const response = yield call(api.post, 'sessions', {
+      email,
+      password,
+    });
 
-  const {token, user} = response.data;
+    const {token, user} = response.data;
 
-  api.defaults.headers['Authorization'] = `Bearer ${token}`;
+    api.defaults.headers['Authorization'] = `Bearer ${token}`;
 
-  yield put(signInSuccess(token, user));
-  
-  history.push('/home');
-  window.location.reload();
+    yield put(signInSuccess(token, user));
+    
+    history.push('/home');
+    window.location.reload();
+  } catch(err) {
+    toast.error('Falha na autenticação, verifique seus dados');
+    console.log('erro');
+    yield put(signFailure());
+  }
 }
 
 export function* signUp({payload}){

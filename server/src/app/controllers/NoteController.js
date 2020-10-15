@@ -73,8 +73,8 @@ class NoteController{
 
     const {title, description, time, date} = request.body;
 
-    const timeFormated = String(convertHourToMinutes(time));
-    const dateFormated = String(convertDateToDays(date));
+    const timeFormatedFunc = String(convertHourToMinutes(time));
+    const dateFormatedFunc = String(convertDateToDays(date));
 
     await connection('notes')
     .where('id', id)
@@ -82,8 +82,10 @@ class NoteController{
     .update({
       title,
       description,
-      time: timeFormated,
-      date: dateFormated,
+      time,
+      date,
+      timeFormated: timeFormatedFunc,
+      dateFormated: dateFormatedFunc,
     });
 
     return response.status(201).send(request.body);

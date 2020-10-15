@@ -1,18 +1,23 @@
 import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import {useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
 
 import { addTask } from '../../store/modules/todo/actions'
 import SideBar from '../../components/SideBar';
 import {Container, Titles, Content, NewCard, Text, Time} from './styles';
 
 function AddTask(){
-
+  const history = useHistory();
   const dispatch = useDispatch();
   
   function handleSubmit(title, description, time, date){
 
     dispatch(addTask(title, description, time, date))
+  }
+
+  function cancelNewTask(){
+    history.push('/home');
   }
 
   return (
@@ -54,7 +59,7 @@ function AddTask(){
             </Time>
           </NewCard>
           <button className="add" type="submit">Adicionar</button>
-          <button className="cancel" type="button">Cancelar</button>
+          <button className="cancel" onClick={cancelNewTask} type="button">Cancelar</button>
         </Content>
       </Form>
     </Container>
@@ -63,25 +68,3 @@ function AddTask(){
 }
 
 export default AddTask;
-
-/**
- * <Input 
-                  name="days" 
-                  type="number" 
-                  min="1" 
-                  max="31" 
-                  placeholder="Dia"
-                  value={day}
-                  onChange={e => setDay(e.target.value)}
-                />
-
-                <Input 
-                  name="month" 
-                  type="number" 
-                  min="1" 
-                  max="12" 
-                  placeholder="Mês"
-                  value={mon}
-                  onChange={e => setMon(e.target.value)}
-                />
- */

@@ -19,7 +19,7 @@ function Routes(){
         <Route path="/add-task" exact component={AddTask} isPrivate/>
         <Route path="/home" exact component={Home} isPrivate/>
         <Route path="/checked-tasks" exact component={Checked} isPrivate/>
-        <Route path="/edit-task" exact component={EditTask} isPrivate/>
+        <Route path="/edit-task/:id" exact component={EditTask} isPrivate/>
       </Switch>
     </>
   )

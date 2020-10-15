@@ -5,9 +5,22 @@ export function addTask({title, description, time, date}) {
   }
 }
 
-export function loadTask(id){
+export function updateTaskRequest(id, data){
   return {
-    type: '@todo/LOAD_TASK',
-    payload: id,
-  }
+    type: '@todo/UPDATE_TASK_REQUEST',
+    payload: {id, data},
+  };
+}
+
+export function updateTaskSuccess(id){
+  return {
+    type: '@todo/UPDATE_TASK_SUCCESS',
+    payload: {id},
+  };
+}
+
+export function updateTaskFailure(){
+  return {
+    type: '@todo/UPDATE_TASK_REQUEST',
+  };
 }

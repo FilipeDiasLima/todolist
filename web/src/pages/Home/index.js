@@ -19,7 +19,7 @@ function Home(){
   
   useEffect(() => {
     loadTasksCards();
-  }, []);
+  }, [setCards]);
 
   //let backgroundColor = String(randomColor());
 
@@ -27,10 +27,11 @@ function Home(){
     await api.put(`tasks-check/${id}`,{
       "finished": true,
     });
+    
   }
 
   function handleEditTask(id){
-    history.push("/edit-task", id);
+    history.push(`/edit-task/${id}`);
   }
 
   async function handleDeleteTask(id){
@@ -62,9 +63,9 @@ function Home(){
               <Link to="" onClick={() => toggleCheckTask(card.id)}>
                 <IoIosCheckbox size={28}/>
               </Link>
-              <Link to="" onClick={() => handleEditTask(card.id)}>
+              <button type="button" onClick={() => handleEditTask(card.id)}>
                 <IoIosCreate size={28}/>
-              </Link>
+              </button>
               <Link to="" onClick={() => handleDeleteTask(card.id)}>
                 <IoIosCloseCircle size={28}/>
               </Link>
