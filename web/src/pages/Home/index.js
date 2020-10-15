@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {IoIosCheckbox, IoIosCreate, IoIosCloseCircle} from 'react-icons/io';
 import {Link, useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux'
 
 //import randomColor from '../../utils/randomColor';
 import api from '../../services/api';
@@ -10,6 +11,7 @@ import { Container, Titles, Cards, CardContainer, CardContent, CardIcons } from 
 
 function Home(){
   const history = useHistory();
+  const profile = useSelector(state => state.user.profile);
   const [cards, setCards] = useState([]); 
 
   async function loadTasksCards() {
@@ -19,7 +21,7 @@ function Home(){
   
   useEffect(() => {
     loadTasksCards();
-  }, [setCards]);
+  }, [cards]);
 
   //let backgroundColor = String(randomColor());
 
@@ -45,8 +47,8 @@ function Home(){
     <SideBar />
     <Container>
       <Titles>
-        <h1>ToDoList</h1>
-        <h2>Não Finalizadas</h2>
+        <h1>Olá, {profile.name}</h1>
+        <h2>Suas Tarefas</h2>
       </Titles>
       <Cards>
         {cards.map(card => (

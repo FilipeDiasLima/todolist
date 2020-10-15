@@ -3,6 +3,7 @@ import {IoIosCheckbox, IoIosCloseCircle} from 'react-icons/io';
 import {Link} from 'react-router-dom';
 import {useHistory} from 'react-router-dom'
 import api from '../../services/api';
+import {useSelector} from 'react-redux'
 
 import SideBar from '../../components/SideBar';
 import { Container, Titles, Cards, CardContainer, CardContent, CardIcons  } from './styles';
@@ -10,6 +11,7 @@ import { Container, Titles, Cards, CardContainer, CardContent, CardIcons  } from
 function CheckedTasks(){
   const [cards, setCards] = useState([]);
   const history = useHistory();
+  const profile = useSelector(state => state.user.profile);
 
   async function loadTasksCards() {
     const response = await api.get('/tasks-check');
@@ -38,7 +40,7 @@ function CheckedTasks(){
     <SideBar />
     <Container>
       <Titles>
-        <h1>ToDoList</h1>
+        <h1>Olá, {profile.name}</h1>
         <h2>Finalizadas</h2>
       </Titles>
       <Cards>
