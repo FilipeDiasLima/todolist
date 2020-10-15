@@ -7,8 +7,7 @@ exports.up = function (knex) {
     table.string("time").notNullable();
     table.string("date").notNullable();
     table.boolean('finished').notNullable().defaultTo(false);
-    table.string('timeFormated').notNullable();
-    table.string('dateFormated').notNullable();
+    table.integer('timeFormated').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
