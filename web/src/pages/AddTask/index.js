@@ -1,9 +1,20 @@
 import React from 'react';
+import { Form, Input } from '@rocketseat/unform';
+import {useDispatch} from 'react-redux'
 
+import { addTask } from '../../store/modules/todo/actions'
 import SideBar from '../../components/SideBar';
 import {Container, Titles, Content, NewCard, Text, Time} from './styles';
 
 function AddTask(){
+
+  const dispatch = useDispatch();
+  
+  function handleSubmit(title, description, time, date){
+
+    dispatch(addTask(title, description, time, date))
+  }
+
   return (
     <>
     <SideBar/>
@@ -12,29 +23,65 @@ function AddTask(){
         <h1>ToDoList</h1>
         <h2>Adicionar Tarefa</h2>
       </Titles>
-      <Content>
-        <NewCard>
-          <Text>
-            <input name="title" maxLength="23" placeholder="Titulo" />
-            <textarea className="description" name="description" rows="3" maxLength="78" placeholder="Descrição" />
-          </Text>
-          <Time>
-            <div className="time">
-              <input name="hour" type="number" min="0" max="23" placeholder="Hora"/>
-              <input name="minutes" type="number" min="0" max="59" placeholder="Min"/>
-            </div>
-            <div className="date">
-              <input name="days" type="number" min="1" max="31" placeholder="Dia"/>
-              <input name="month" type="number" min="1" max="12" placeholder="Mês"/>
-            </div>
-          </Time>
-        </NewCard>
-        <button className="add" type="button">Adicionar</button>
-        <button className="cancel" type="button">Cancelar</button>
-      </Content>
+      <Form onSubmit={handleSubmit}>
+        <Content>
+          <NewCard>
+            <Text>
+              <Input 
+                name="title" 
+                maxLength="23" 
+                placeholder="Titulo"
+              />
+              <Input
+                multiline 
+                className="description" 
+                name="description" 
+                rows="3" 
+                maxLength="78" 
+                placeholder="Descrição"
+              />
+            </Text>
+            <Time>
+                <Input
+                  name="time"
+                  type="time"
+                  required
+                />
+                <Input
+                  name="date"
+                  type="date"         
+                />
+            </Time>
+          </NewCard>
+          <button className="add" type="submit">Adicionar</button>
+          <button className="cancel" type="button">Cancelar</button>
+        </Content>
+      </Form>
     </Container>
     </>
   );
 }
 
 export default AddTask;
+
+/**
+ * <Input 
+                  name="days" 
+                  type="number" 
+                  min="1" 
+                  max="31" 
+                  placeholder="Dia"
+                  value={day}
+                  onChange={e => setDay(e.target.value)}
+                />
+
+                <Input 
+                  name="month" 
+                  type="number" 
+                  min="1" 
+                  max="12" 
+                  placeholder="Mês"
+                  value={mon}
+                  onChange={e => setMon(e.target.value)}
+                />
+ */

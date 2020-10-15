@@ -10,7 +10,8 @@ export const Container = styled.div`
   width: 100%;
 
   padding: 30px 0;
-  background: transparent;
+  background: #FFFFFF;
+  border-radius: 0px 35px 35px 0px;
   align-items: center;
   overflow: hidden;
 
@@ -19,8 +20,11 @@ export const Container = styled.div`
 
 export const Logo = styled.div`
   margin-bottom: 260px;
-  font-size: 3rem;
-  line-height: 3.7rem;
+  transition: transform 1s;
+
+  &:hover {
+    transform: rotate(360deg);
+  }
 `;
 
 export const Icons = styled.div`
@@ -31,19 +35,21 @@ export const Icons = styled.div`
   justify-content: center;
 
   .link {
-    background: #5F649A;
     border: none;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    a {
+    .unselected {
       width: 100%;
       height: 50px;
       text-decoration: none;
       display: flex;
       align-items: center;
-      background: #EFF0F2;
+      background: transparent;
       border: none;
-      transition: transform 0.2s;
+      transition: transform 0.4s;
 
       svg {
         margin-left: 21px;
@@ -56,7 +62,7 @@ export const Icons = styled.div`
       }
 
       &:hover {
-        transform: translateX(10px);
+        transform: scale(1.5);
       }
     }
 
@@ -66,13 +72,14 @@ export const Icons = styled.div`
       text-decoration: none;
       display: flex;
       align-items: center;
-      background: #EFF0F2;
+      background: transparent;
       border: none;
-      transform: translateX(10px);
+      transform: translateX(9px);
 
       svg {
+        transform: scale(1.5);
         margin-left: 11px;
-        color: #5D5F74;
+        color: #5F649A;
       }
     }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 
 import {signInRequest} from '../../store/modules/auth/actions'

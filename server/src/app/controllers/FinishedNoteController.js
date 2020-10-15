@@ -20,8 +20,8 @@ class FinishedNoteController {
     const notes = await connection('notes')
     .where('user_id', userId)
     .where('finished', 1)
-    .orderBy('date','asc')
-    .orderBy('time','asc')
+    .orderBy('dateFormated','asc')
+    .orderBy('timeFormated','asc')
     .select('*');
 
     return response.json(notes);

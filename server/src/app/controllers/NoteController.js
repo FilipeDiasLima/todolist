@@ -11,15 +11,17 @@ class NoteController{
     .where('id',userId)
     .first();
 
-    const timeFormated = String(convertHourToMinutes(time));
-    const dateFormated = String(convertDateToDays(date));
+    const timeFormatedFunc = String(convertHourToMinutes(time));
+    const dateFormatedFunc = String(convertDateToDays(date));
     
     const [note] = await connection('notes').insert({
       user_id: userId,
       title,
       description,
-      time: timeFormated,
-      date: dateFormated,
+      time,
+      date,
+      timeFormated: timeFormatedFunc,
+      dateFormated: dateFormatedFunc,
     });
 
     return response.status(201).send({
@@ -36,8 +38,9 @@ class NoteController{
 
     const notes = await connection('notes')
     .where('user_id', userId)
-    .orderBy('date','asc')
-    .orderBy('time','asc')
+    .orderBy('dateFormated','asc')
+    .orderBy('timeFormated','asc')
+    .where('finished', 0)
     .select('*');
 
     return response.json(notes);

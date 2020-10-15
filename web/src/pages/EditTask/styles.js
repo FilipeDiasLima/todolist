@@ -124,43 +124,20 @@ export const Time = styled.div`
   justify-content: space-between;
   margin-top: 50px;
 
-  .time {
-    display: flex;
-    max-width: 150px;
-    max-height: 100px;
-    width: 100%;
-
-    input {
+  > input {
       border-radius: 5px;
       border: none;
+      background: #EFF0F2;
       padding: 10px;
+      max-width: 100px;
+      max-height: 100px;
       width: 100%;
       height: 30px;
       font-size: 1.6rem;
     }
 
-    input+input{
+  > input+input{
       margin-left: 10px;
+      max-width: 180px;
     }
-  }
-
-  .date {
-    display: flex;
-    max-width: 150px;
-    max-height: 100px;
-    width: 100%;
-
-    input {
-      border-radius: 5px;
-      border: none;
-      padding: 10px;
-      width: 100%;
-      height: 30px;
-      font-size: 1.6rem;
-    }
-
-    input+input{
-      margin-left: 10px;
-    }
-  }
 `;

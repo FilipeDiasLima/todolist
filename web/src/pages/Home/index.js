@@ -1,22 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import {IoIosCheckbox, IoIosCreate, IoIosCloseCircle} from 'react-icons/io';
+import {Link, useHistory} from 'react-router-dom';
 
+//import randomColor from '../../utils/randomColor';
 import api from '../../services/api';
 
 import SideBar from '../../components/SideBar';
 import { Container, Titles, Cards, CardContainer, CardContent, CardIcons } from './styles';
 
 function Home(){
-  const [cards, setCards] = useState([]);
+  const history = useHistory();
+  const [cards, setCards] = useState([]); 
 
-  async function loadCards(){
-    const {data} = await api.get('tasks');
-    setCards(data);
+  async function loadTasksCards() {
+    const response = await api.get('tasks');
+    setCards(response.data);
+  }
+  
+  useEffect(() => {
+    loadTasksCards();
+  }, []);
+
+  //let backgroundColor = String(randomColor());
+
+  async function toggleCheckTask(id){
+    await api.put(`tasks-check/${id}`,{
+      "finished": true,
+    });
   }
 
-  useEffect(() => {
-    loadCards();
-  },[])
+  function handleEditTask(id){
+    history.push("/edit-task", id);
+  }
+
+  async function handleDeleteTask(id){
+    await api.delete(`tasks/${id}`);
+
+    setCards(cards.filter(card => card.id !== id));
+  }
 
   return(
     <>
@@ -38,9 +59,15 @@ function Home(){
               </footer>
             </CardContent>
             <CardIcons>
-              <IoIosCheckbox size={28}/>
-              <IoIosCreate size={28}/>
-              <IoIosCloseCircle size={28}/>
+              <Link to="" onClick={() => toggleCheckTask(card.id)}>
+                <IoIosCheckbox size={28}/>
+              </Link>
+              <Link to="" onClick={() => handleEditTask(card.id)}>
+                <IoIosCreate size={28}/>
+              </Link>
+              <Link to="" onClick={() => handleDeleteTask(card.id)}>
+                <IoIosCloseCircle size={28}/>
+              </Link>
             </CardIcons>
           </CardContainer>
         ))}

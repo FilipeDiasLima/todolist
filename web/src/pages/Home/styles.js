@@ -48,13 +48,20 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding: 15px;
-  background: #FF9F69;
+  background: #8692FF;
   max-width: 403px;
   max-height: 169px;
   width: 100%;
   height: 100%;
   border-radius: 10px;
   justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s;
+  
+  &:hover {
+    transform: scale(1.03);
+  }
 `;
 
 export const CardContent = styled.div`
@@ -70,10 +77,11 @@ export const CardContent = styled.div`
 
   > span {
     margin-top: 6px;
-    color: #000;
+    color: #FFF;
     font-size: 2rem;
     line-height: 2.5rem;
     min-height: 75px;
+    width: 100%;
   }
 
   > footer {
@@ -96,15 +104,19 @@ export const CardContent = styled.div`
 export const CardIcons = styled.div`
   display: flex;
   flex-direction: column;
-  color: #FFF;
 
-  svg {
-    margin-top: 15px;
-    cursor: pointer;
-    transition: color 0.3s;
+  a {
+    text-decoration: none;
+    color: #FFF;
 
-    &:hover {
-      color: #7582D6;
+    svg {
+      margin-top: 15px;
+      cursor: pointer;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.3);
+      }
     }
   }
 `;

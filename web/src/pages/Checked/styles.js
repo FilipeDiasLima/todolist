@@ -44,7 +44,6 @@ export const Cards = styled.div`
   }
 `;
 
-
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -56,6 +55,7 @@ export const CardContainer = styled.div`
   height: 100%;
   border-radius: 10px;
   justify-content: space-between;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 `;
 
 export const CardContent = styled.div`
@@ -71,9 +71,10 @@ export const CardContent = styled.div`
 
   > span {
     margin-top: 6px;
-    color: #000;
+    color: #FFF;
     font-size: 2rem;
     line-height: 2.5rem;
+    min-height: 75px;
   }
 
   > footer {
@@ -98,13 +99,18 @@ export const CardIcons = styled.div`
   flex-direction: column;
   color: #FFF;
 
-  svg {
-    margin-top: 15px;
-    cursor: pointer;
-    transition: color 0.3s;
+  a {
+    text-decoration: none;
+    color: #FFF;
 
-    &:hover {
-      color: #7582D6;
+    svg {
+      margin-top: 15px;
+      cursor: pointer;
+      transition: transform 0.3s;
+
+      &:hover {
+        transform: scale(1.3);
+      }
     }
   }
 `;

@@ -79,6 +79,7 @@ export const NewCard = styled.div`
   width: 100%;
   background: #5D5F74;
   border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 `;
 
 export const Text = styled.div`
@@ -117,6 +118,7 @@ export const Text = styled.div`
 
 `;
 
+
 export const Time = styled.div`
   display: flex;
   flex-direction: row;
@@ -124,43 +126,20 @@ export const Time = styled.div`
   justify-content: space-between;
   margin-top: 50px;
 
-  .time {
-    display: flex;
-    max-width: 150px;
-    max-height: 100px;
-    width: 100%;
-
-    input {
+  > input {
       border-radius: 5px;
       border: none;
+      background: #EFF0F2;
       padding: 10px;
+      max-width: 100px;
+      max-height: 100px;
       width: 100%;
       height: 30px;
       font-size: 1.6rem;
     }
 
-    input+input{
+  > input+input{
       margin-left: 10px;
+      max-width: 180px;
     }
-  }
-
-  .date {
-    display: flex;
-    max-width: 150px;
-    max-height: 100px;
-    width: 100%;
-
-    input {
-      border-radius: 5px;
-      border: none;
-      padding: 10px;
-      width: 100%;
-      height: 30px;
-      font-size: 1.6rem;
-    }
-
-    input+input{
-      margin-left: 10px;
-    }
-  }
 `;

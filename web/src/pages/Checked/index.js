@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {IoIosCheckbox, IoIosCreate, IoIosCloseCircle} from 'react-icons/io';
+import {IoIosCheckbox, IoIosCloseCircle} from 'react-icons/io';
+import {Link} from 'react-router-dom';
 
 import api from '../../services/api';
 
@@ -9,14 +10,27 @@ import { Container, Titles, Cards, CardContainer, CardContent, CardIcons  } from
 function Home(){
   const [cards, setCards] = useState([]);
 
-  async function loadCards(){
-    const {data} = await api.get('tasks-check');
-    setCards(data);
+  async function loadTasksCards() {
+    const response = await api.get('/tasks-check');
+    setCards(response.data);
   }
 
   useEffect(() => {
-    loadCards();
-  },[])
+    loadTasksCards();
+  }, []);
+
+  async function toggleCheckTask(id){
+    await api.put(`/tasks-check/${id}`,{
+      "finished": false,
+    });
+  }
+
+  async function handleDeleteTask(id){
+    await api.delete(`/tasks/${id}`);
+
+    setCards(cards.filter(card => card.id !== id));
+  }
+
   return(
     <>
     <SideBar />
@@ -37,9 +51,12 @@ function Home(){
                 </footer>
               </CardContent>
               <CardIcons>
-                <IoIosCheckbox size={28}/>
-                <IoIosCreate size={28}/>
-                <IoIosCloseCircle size={28}/>
+                <Link to="" onClick={() => toggleCheckTask(card.id)}>
+                  <IoIosCheckbox size={28}/>
+                </Link>
+                <Link to="" onClick={() => handleDeleteTask(card.id)}>
+                  <IoIosCloseCircle size={28}/>
+                </Link>
               </CardIcons>
             </CardContainer>
           ))}

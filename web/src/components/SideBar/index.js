@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 import {IoIosAddCircle, IoIosSquare, IoIosCheckbox} from 'react-icons/io';
 import {FiPower} from 'react-icons/fi'
 
+import {signOut} from '../../store/modules/auth/actions';
 import taskIcon from '../../assets/icons/task-list.svg';
 
 import { Container, Logo, Icons } from './styles';
   
 function Home(){
   const location = useLocation().pathname;
-
+  const dispatch = useDispatch();
   const [selected, setSelected] = useState("unselected");
 
   function selectedButton() {
@@ -24,6 +26,10 @@ function Home(){
     }
   }
 
+  function handleSignOut(){
+    dispatch(signOut());
+  }
+
   return(
     <Container>
       <Logo>
@@ -34,7 +40,7 @@ function Home(){
           <Link
             to="/add-task"
             onClick={selectedButton}
-            className={location === "/add-task" ? "selected" : ""}
+            className={location === "/add-task" ? "selected" : "unselected"}
           >
             <IoIosAddCircle size={35} />
           </Link>
@@ -44,9 +50,9 @@ function Home(){
           <Link
             to="/home"
             onClick={selectedButton}
-            className={location === "/home" ? "selected" : ""}
+            className={location === "/home" ? "selected" : "unselected"}
           >
-            <IoIosSquare size={38} />
+            <IoIosSquare size={40} />
           </Link>
         </div>
 
@@ -54,7 +60,7 @@ function Home(){
           <Link
             to="/checked-tasks"
             onClick={selectedButton}
-            className={location === "/checked-tasks" ? "selected" : ""}
+            className={location === "/checked-tasks" ? "selected" : "unselected"}
           >
             <IoIosCheckbox size={35} />
           </Link>
@@ -63,8 +69,8 @@ function Home(){
         <div className="link">
           <Link
             to="/logout"
-            onClick={selectedButton}
-            className={location === "/check-items" ? "selected" : ""}
+            onClick={handleSignOut}
+            className="unselected"
           >
             <FiPower size={32} />
           </Link>
