@@ -12,6 +12,7 @@ import { Container, Titles, Cards, CardContainer, CardContent, CardIcons } from 
 function Home(){
   const history = useHistory();
   const profile = useSelector(state => state.user.profile);
+
   const [cards, setCards] = useState([]); 
 
   async function loadTasksCards() {
@@ -21,7 +22,8 @@ function Home(){
   
   useEffect(() => {
     loadTasksCards();
-  }, [cards]);
+  }, []);
+  
 
   //let backgroundColor = String(randomColor());
 
@@ -29,7 +31,7 @@ function Home(){
     await api.put(`tasks-check/${id}`,{
       "finished": true,
     });
-    
+    loadTasksCards();
   }
 
   function handleEditTask(id){
@@ -40,6 +42,7 @@ function Home(){
     await api.delete(`tasks/${id}`);
 
     setCards(cards.filter(card => card.id !== id));
+    //loadTasksCards();
   }
 
   return(
@@ -52,7 +55,9 @@ function Home(){
       </Titles>
       <Cards>
         {cards.map(card => (
-          <CardContainer key={card.id}>
+          <CardContainer key={card.id}
+            className={card.finished === 1 ? "cardCheck" : ""}
+          >
             <CardContent>
               <strong>{card.title}</strong>
               <span>{card.description}</span>
@@ -62,9 +67,9 @@ function Home(){
               </footer>
             </CardContent>
             <CardIcons>
-              <Link to="" onClick={() => toggleCheckTask(card.id)}>
+              <button className="changeState" type="button" onClick={() =>   toggleCheckTask(card.id)}>
                 <IoIosCheckbox size={28}/>
-              </Link>
+              </button>
               <button type="button" onClick={() => handleEditTask(card.id)}>
                 <IoIosCreate size={28}/>
               </button>

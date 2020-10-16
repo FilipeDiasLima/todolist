@@ -10,6 +10,31 @@ export const Container = styled.div`
   > div + div {
     margin-top: 25px;
   }
+
+  .cardCheck {
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    background: #8692FF;
+    opacity: 0.6;
+    max-width: 403px;
+    max-height: 169px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    justify-content: space-between;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    .changeState {
+      display: none;
+    }
+  }
 `;
 
 export const Titles = styled.div`

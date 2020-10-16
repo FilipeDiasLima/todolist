@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {IoIosCheckbox, IoIosCloseCircle} from 'react-icons/io';
-import {Link} from 'react-router-dom';
-import {useHistory} from 'react-router-dom'
+import {IoIosCheckbox} from 'react-icons/io';
+
 import api from '../../services/api';
 import {useSelector} from 'react-redux'
 
@@ -10,7 +9,7 @@ import { Container, Titles, Cards, CardContainer, CardContent, CardIcons  } from
 
 function CheckedTasks(){
   const [cards, setCards] = useState([]);
-  const history = useHistory();
+
   const profile = useSelector(state => state.user.profile);
 
   async function loadTasksCards() {
@@ -20,19 +19,14 @@ function CheckedTasks(){
 
   useEffect(() => {
     loadTasksCards();
-  }, [setCards]);
+  }, []);
+
 
   async function toggleCheckTask(id){
     await api.put(`/tasks-check/${id}`,{
       "finished": false,
     });
-    history.push('/checked-tasks');
-  }
-
-  async function handleDeleteTask(id){
-    await api.delete(`/tasks/${id}`);
-
-    setCards(cards.filter(card => card.id !== id));
+    loadTasksCards();
   }
 
   return(
@@ -55,12 +49,9 @@ function CheckedTasks(){
                 </footer>
               </CardContent>
               <CardIcons>
-                <Link to="" onClick={() => toggleCheckTask(card.id)}>
+                <button className="changeState" type="button" onClick={() =>   toggleCheckTask(card.id)}>
                   <IoIosCheckbox size={28}/>
-                </Link>
-                <Link to="" onClick={() => handleDeleteTask(card.id)}>
-                  <IoIosCloseCircle size={28}/>
-                </Link>
+                </button>
               </CardIcons>
             </CardContainer>
           ))}

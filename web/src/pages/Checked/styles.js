@@ -99,9 +99,11 @@ export const CardIcons = styled.div`
   flex-direction: column;
   color: #FFF;
 
-  a {
+  a, button {
     text-decoration: none;
     color: #FFF;
+    background: transparent;
+    border: none;
 
     svg {
       margin-top: 15px;
