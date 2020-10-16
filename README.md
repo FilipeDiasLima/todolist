@@ -4,10 +4,15 @@
 </div>
 
 # Techs
+### Server
 * [NodeJS](https://nodejs.org/en/)
 * [Knex](http://knexjs.org/)
 * [SQLite3](https://www.sqlite.org/index.html)
 * [Insomnia](https://insomnia.rest/)
+### Web
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Reactotron](https://github.com/infinitered/reactotron)
 
 # How to Run
 
@@ -25,3 +30,11 @@ Depois da instalação das dependencias, execute: <br/>
 `yarn knex:migrate`
 <br/> e logo em seguida <br/>
 `yarn start`
+
+### Web
+
+Abra a pasta **web** no seu terminal e execute: <br/>
+`yarn`
+<br/> e logo em seguida <br/>
+`yarn start`
+
