@@ -14,8 +14,11 @@
 * [Redux](https://redux.js.org/)
 * [Reactotron](https://github.com/infinitered/reactotron)
 
-# How to Run
+<div align="center">
+<img src="./images/login-register.png">
+</div>
 
+# How to Run
 
 Faça o clone do repositório https://gitlab.com/FilipeDiasLima/todolist.git<br/>
 Abra o seu terminal e navegue ate a pasta onde está salvo o repositório
@@ -38,3 +41,11 @@ Abra a pasta **web** no seu terminal e execute: <br/>
 <br/> e logo em seguida <br/>
 `yarn start`
 
+
+# Screenshots
+
+<div align="center">
+<img src="./images/home.png">
+
+<img src="./images/finalizadas.png">
+</div>
