@@ -1,6 +1,6 @@
 const connection = require("../../database/connection");
 const convertHourToMinutes = require("../../utils/convertHourToMinutes");
-const convertDateToDays = require("../../utils/convertDateToDays");
+const convertDateToMinutes = require("../../utils/convertDateToMinutes");
 
 class NoteController{
   async store(request, response){
@@ -12,7 +12,7 @@ class NoteController{
     .first();
 
     const timeFormatedFunc = convertHourToMinutes(time);
-    const dateFormatedFunc = convertDateToDays(date);
+    const dateFormatedFunc = convertDateToMinutes(date);
     const timeTotal = timeFormatedFunc + dateFormatedFunc;
 
     const [note] = await connection('notes').insert({
@@ -72,7 +72,7 @@ class NoteController{
     const {title, description, time, date} = request.body;
 
     const timeFormatedFunc = convertHourToMinutes(time);
-    const dateFormatedFunc = convertDateToDays(date);
+    const dateFormatedFunc = convertDateToMinutes(date);
     const timeTotal = timeFormatedFunc + dateFormatedFunc;
 
     await connection('notes')

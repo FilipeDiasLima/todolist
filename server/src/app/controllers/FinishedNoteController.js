@@ -20,7 +20,6 @@ class FinishedNoteController {
     const notes = await connection('notes')
     .where('user_id', userId)
     .where('finished', 1)
-    .orderBy('dateFormated','asc')
     .orderBy('timeFormated','asc')
     .select('*');
 
